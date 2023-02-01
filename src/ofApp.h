@@ -1,7 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
+
+#include "Creature.hpp"
 #include "Boid.hpp"
+#include "LeadGoose.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -23,5 +26,5 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
-        std::vector<Boid *> boids;
+        std::vector<Creature *> creatures;
 };

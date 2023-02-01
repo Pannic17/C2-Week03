@@ -7,6 +7,10 @@
 
 #include "Boid.hpp"
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "err_typecheck_subscript_value"
+#define ERROR NULL
+
 Boid::Boid()
 {
    separationWeight = 1.0f;
@@ -18,11 +22,12 @@ Boid::Boid()
    
    position = ofVec3f(ofRandom(0, 200), ofRandom(0, 200));
    velocity = ofVec3f(ofRandom(-2, 2), ofRandom(-2, 2));
+   colour = ofVec3f(0, 255, 255);
 }
 
 Boid::Boid(ofVec3f &pos, ofVec3f &vel)
 {
-   separationWeight = 1.0f;
+   separationWeight = 4.0f;
    cohesionWeight = 0.2f;
    alignmentWeight = 0.1f;
    
@@ -38,69 +43,7 @@ Boid::~Boid()
    
 }
 
-float Boid::getSeparationWeight()
-{
-   return separationWeight;
-}
-float Boid::getCohesionWeight()
-{
-   return cohesionWeight;
-}
-
-float Boid::getAlignmentWeight()
-{
-   return alignmentWeight;
-}
-
-
-float Boid::getSeparationThreshold()
-{
-   return separationThreshold;
-}
-
-float Boid::getNeighbourhoodSize()
-{
-   return neighbourhoodSize;
-}
-
-
-void Boid::setSeparationWeight(float f)
-{
-   separationWeight = f;
-}
-void Boid::setCohesionWeight(float f)
-{
-   cohesionWeight = f;
-}
-
-void Boid::setAlignmentWeight(float f)
-{
-   alignmentWeight = f;
-}
-
-
-void Boid::setSeparationThreshold(float f)
-{
-   separationThreshold = f;
-}
-
-void Boid::setNeighbourhoodSize(float f)
-{
-   neighbourhoodSize = f;
-}
-
-
-ofVec3f Boid::getPosition()
-{
-   return position;
-}
-
-ofVec3f Boid::getVelocity()
-{
-   return velocity;
-}
-
-ofVec3f Boid::separation(std::vector<Boid *> &otherBoids)
+ofVec3f Boid::separation(std::vector<Creature *> &otherBoids)
 {
    // finds the first collision and avoids that
    // should probably find the nearest one
@@ -114,9 +57,11 @@ ofVec3f Boid::separation(std::vector<Boid *> &otherBoids)
            return v;
        }
    }
+    return ofVec3f();
+//    return ERROR;
 }
 
-ofVec3f Boid::cohesion(std::vector<Boid *> &otherBoids)
+ofVec3f Boid::cohesion(std::vector<Creature *> &otherBoids)
 {
    ofVec3f average(0,0,0);
    int count = 0;
@@ -134,7 +79,7 @@ ofVec3f Boid::cohesion(std::vector<Boid *> &otherBoids)
    return v;
 }
 
-ofVec3f Boid::alignment(std::vector<Boid *> &otherBoids)
+ofVec3f Boid::alignment(std::vector<Creature *> &otherBoids)
 {
    ofVec3f average(0,0,0);
    int count = 0;
@@ -152,39 +97,36 @@ ofVec3f Boid::alignment(std::vector<Boid *> &otherBoids)
    return v;
 }
 
-void Boid::update(std::vector<Boid *> &otherBoids, ofVec3f &min, ofVec3f &max)
+ofVec3f Boid::heading(std::vector<Creature *> &otherBoids) {
+    ofVec3f hp = (*otherBoids[50]).getPosition();
+    ofVec3f t = hp - position;
+    return t;
+}
+
+void Boid::update(std::vector<Creature *> &otherBoids, ofVec3f &min, ofVec3f &max)
 {
    velocity += separationWeight*separation(otherBoids);
    velocity += cohesionWeight*cohesion(otherBoids);
    velocity += alignmentWeight*alignment(otherBoids);
-   
+   velocity += heading(otherBoids) / 1000;
+
+    if (velocity.length() > 50) {
+        velocity /= 5;
+    }
+
    walls(min, max);
    position += velocity;
 }
 
-void Boid::walls(ofVec3f &min, ofVec3f &max)
-{
-   if (position.x < min.x){
-       position.x = min.x;
-       velocity.x *= -1;
-   } else if (position.x > max.x){
-       position.x = max.x;
-       velocity.x *= -1;
-   }
-   
-   if (position.y < min.y){
-       position.y = min.y;
-       velocity.y *= -1;
-   } else if (position.y > max.y){
-       position.y = max.y;
-       velocity.y *= -1;
-   }
-   
-   
-}
-
 void Boid::draw()
 {
-   ofSetColor(0, 255, 255);
-   ofCircle(position.x, position.y, 5);
+   ofSetColor(colour.x, colour.y, colour.z);
+   ofRectangle(position.x, position.y, 100, 200);
+   ofCircle(position.x - 10, position.y, 10);
+   ofCircle(position.x + 10, position.y, 10);
+   ofSetColor(colour.x-100, colour.y-100, colour.z-100);
+   ofCircle(position.x - 5, position.y, 3);
+   ofCircle(position.x + 5, position.y, 3);
 }
+
+#pragma clang diagnostic pop

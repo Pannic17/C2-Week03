@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		39ADFD9029898B220031FCBA /* Boid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39ADFD8E29898B220031FCBA /* Boid.cpp */; };
+		39ADFD932989981A0031FCBA /* Creature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39ADFD912989981A0031FCBA /* Creature.cpp */; };
+		39ADFD96298998870031FCBA /* LeadGoose.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39ADFD94298998870031FCBA /* LeadGoose.cpp */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
 /* End PBXBuildFile section */
@@ -27,6 +29,10 @@
 /* Begin PBXFileReference section */
 		39ADFD8E29898B220031FCBA /* Boid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Boid.cpp; sourceTree = "<group>"; };
 		39ADFD8F29898B220031FCBA /* Boid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Boid.hpp; sourceTree = "<group>"; };
+		39ADFD912989981A0031FCBA /* Creature.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Creature.cpp; sourceTree = "<group>"; };
+		39ADFD922989981A0031FCBA /* Creature.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Creature.hpp; sourceTree = "<group>"; };
+		39ADFD94298998870031FCBA /* LeadGoose.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LeadGoose.cpp; sourceTree = "<group>"; };
+		39ADFD95298998870031FCBA /* LeadGoose.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LeadGoose.hpp; sourceTree = "<group>"; };
 		E42962AC2163EDD300A6A9E2 /* ofCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ofCamera.cpp; path = ../../../libs/openFrameworks/3d/ofCamera.cpp; sourceTree = SOURCE_ROOT; };
 		E42962AD2163EDD300A6A9E2 /* ofMesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofMesh.h; path = ../../../libs/openFrameworks/3d/ofMesh.h; sourceTree = SOURCE_ROOT; };
 		E42962AE2163EDD300A6A9E2 /* ofNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofNode.h; path = ../../../libs/openFrameworks/3d/ofNode.h; sourceTree = SOURCE_ROOT; };
@@ -538,6 +544,10 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				39ADFD8E29898B220031FCBA /* Boid.cpp */,
 				39ADFD8F29898B220031FCBA /* Boid.hpp */,
+				39ADFD912989981A0031FCBA /* Creature.cpp */,
+				39ADFD922989981A0031FCBA /* Creature.hpp */,
+				39ADFD94298998870031FCBA /* LeadGoose.cpp */,
+				39ADFD95298998870031FCBA /* LeadGoose.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -640,8 +650,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39ADFD932989981A0031FCBA /* Creature.cpp in Sources */,
 				39ADFD9029898B220031FCBA /* Boid.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				39ADFD96298998870031FCBA /* LeadGoose.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
